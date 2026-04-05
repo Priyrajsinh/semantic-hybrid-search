@@ -1,0 +1,39 @@
+data:
+  dataset_name: "wikipedia"
+  dataset_config: "20220301.simple"
+  n_articles: 10000
+  chunk_size: 256
+  chunk_overlap: 50
+  seed: 42
+
+encoder:
+  model_name: "all-MiniLM-L6-v2"
+  embedding_dim: 384
+  batch_size: 256
+
+index:
+  type: "IndexIVFFlat"        # scalable to 1M+ docs (interview talking point)
+  nlist: 100                   # number of Voronoi cells
+  nprobe: 10                   # cells to search at query time
+  fallback_threshold: 1000     # use IndexFlatIP if n_vectors < 1000 (IVF needs training data)
+
+reranker:
+  model_name: "cross-encoder/ms-marco-MiniLM-L-6-v2"
+  top_k_retrieve: 20
+  top_k_rerank: 5
+
+search:
+  default_top_k: 5
+  score_threshold: 0.0
+
+api:
+  rate_limit_search: "60/minute"
+  max_payload_mb: 1
+  cors_origins: ["http://localhost:3000"]
+
+mlflow:
+  experiment_name: "b4-semantic-search"
+  registered_model_name: "SemanticSearchEngine"
+
+docker:
+  image_name: "b4-semantic-search-faiss"
