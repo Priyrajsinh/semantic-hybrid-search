@@ -13,6 +13,7 @@ prometheus-fastapi-instrumentator==7.1.0
 python-json-logger==4.1.0
 mlflow==3.10.1
 PyYAML==6.0.3
+psutil==7.2.2
 joblib==1.5.3
 numpy==2.2.6
 pandas==2.3.3
