@@ -22,7 +22,6 @@ def load_wikipedia(config: dict) -> list[dict]:
         data_cfg["dataset_name"],
         data_cfg["dataset_config"],
         split="train",
-        trust_remote_code=True,
     )
     n = data_cfg["n_articles"]
     ds = ds.select(range(min(n, len(ds))))

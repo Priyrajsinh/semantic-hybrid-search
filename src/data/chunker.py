@@ -34,6 +34,9 @@ def chunk_articles(
         chunk_index = 0
         while idx < len(tokens):
             chunk_text = " ".join(tokens[idx : idx + chunk_size])
+            if len(chunk_text) < 10:
+                idx += step
+                continue
             rows.append(
                 {
                     "article_title": title,
