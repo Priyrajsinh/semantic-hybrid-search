@@ -26,6 +26,12 @@ search:
   default_top_k: 5
   score_threshold: 0.0
 
+hybrid:
+  bm25_top_k: 20
+  dense_top_k: 20
+  rrf_k: 60
+  final_top_k: 5
+
 api:
   rate_limit_search: "60/minute"
   max_payload_mb: 1
